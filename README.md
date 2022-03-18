@@ -13,6 +13,43 @@ Role Variables
 
 A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
+``ỳaml
+# defaults file for exabgp
+# exabgp: define the exabgp config
+exabgp:
+  # vip defines the VIP and health-check configuration
+  vip:
+    - 
+      # the file name of the health-check
+      healthcheck: http.run
+      # args for the health-check
+      args: 1.1.1.1 www.google.ch
+  # neighbor definition to router
+  neighbor:
+    # id of peer
+  - id: 127.0.0.1
+    # router-id 
+    routerId: 127.0.0.1
+    # local adress to listen on
+    localAddress: 172.0.0.1
+    # local as number
+    localAs: 1
+    # peer as number
+    peerAs: 1
+    # enable group updates
+    groupUpdates: false
+    # enable bgp caps
+    capability:
+      graceful-restart: true
+
+
+# exabgp config path on host system
+exabgp_path: /etc/exabgp/
+
+# systemd path for service files
+systemd_path: /etc/systemd/system/
+```
+
 Dependencies
 ------------
 
