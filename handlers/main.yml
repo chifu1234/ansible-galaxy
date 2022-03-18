@@ -1,0 +1,7 @@
+---
+# handlers file for exabgp
+- name: restart exabgp
+  ansible.builtin.systemd:
+    state: restarted
+    name: exabgp
+    enabled: yes

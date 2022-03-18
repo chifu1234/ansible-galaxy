@@ -1,0 +1,18 @@
+---
+# tasks file for exabgp
+- name: Ensure directory structure exists
+  file:
+    path: '{{ exabgp_path }}'
+    state: directory
+
+- name: Ensure files are populated from templates
+  template:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+  loop:
+    - { src: 'exabgp.conf.j2', dest: "{{ exabgp_path}}/exabgp.conf" }
+    - { src: 'http.run.j2', dest: "{{ exabgp_path}}/http.run" }
+    - { src: 'exabgp.service', dest: "{{ systemd_path }}/exabgp.service" }
+  notify:
+    - restart exabgp
+

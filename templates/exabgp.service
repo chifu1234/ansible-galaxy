@@ -1,0 +1,15 @@
+[Unit]
+Description=MyApp
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker rm --force exabgp
+ExecStart=/usr/bin/docker run -v /etc/exabgp/:/etc/exabgp --name exabgp docker.io/bedag/exabgp /etc/exabgp/exabgp.conf
+ExecStop=/usr/bin/docker stop exabgp 
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

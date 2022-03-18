@@ -1,0 +1,22 @@
+---
+# defaults file for exabgp
+
+exabgp:
+  vip:
+    - 
+      healthcheck: http.run
+      url: www.google.ch
+      args: 1.1.1.1 www.google.ch
+  neighbor:
+  - id: 127.0.0.1
+    routerId: 127.0.0.1
+    localAddress: 172.0.0.1
+    localAs: 1
+    peerAs: 1
+    groupUpdates: false
+    capability:
+      graceful-restart: true
+
+
+exabgp_path: /etc/exabgp/
+systemd_path: /etc/systemd/system/

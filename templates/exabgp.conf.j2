@@ -1,0 +1,39 @@
+# Ansible managed
+
+process health {
+{% for item in exabgp.vip %}
+  run {{ exabgp_path }}{{ item.healthcheck }} {{ item.args }};
+  encoder json;
+{% endfor %}
+
+}
+
+{% for item in exabgp.neighbor %}
+neighbor {{ item.id }} {
+{% if item.routerId is defined %}
+    router-id {{ item.routerId }};
+{% endif %}
+{% if item.localAddress is defined %}
+    local-address {{ item.localAddress }};
+{% endif %}
+{% if item.localAs is defined %}
+    local-as {{ item.localAs }};
+{% endif %}
+{% if item.peerAs is defined %}
+    peer-as {{ item.peerAs }};
+{% endif %}
+{% if item.groupUpdates is defined %}
+    group-updates {{ item.groupUpdates }};
+{% endif %}
+{% if item.capability is defined %}
+    capability {
+{% for item2 in item.capability %}
+      {{ item2 }};
+{% endfor %}
+    }
+{% endif %}
+    api {
+      processes [ health ];
+    }
+}
+{% endfor %}
