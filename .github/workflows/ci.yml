@@ -5,15 +5,15 @@ on:
   - push
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-        with:
-          path: "${{ github.repository }}"
-      - name: molecule
-        uses: robertdebock/molecule-action@4.0.7
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v2
+  #       with:
+  #         path: "${{ github.repository }}"
+  #     - name: molecule
+  #       uses: robertdebock/molecule-action@4.0.7
   release:
     needs:
       - test
