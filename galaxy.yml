@@ -1,7 +1,7 @@
 # See https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html
 
 namespace: chifu1234
-name: exabgp
+name: ansible_galaxy
 version: 0.1.0
 readme: README.md
 authors:

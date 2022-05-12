@@ -15,4 +15,3 @@
     - { src: 'exabgp.service', dest: "{{ systemd_path }}/exabgp.service" }
   notify:
     - restart exabgp
-
