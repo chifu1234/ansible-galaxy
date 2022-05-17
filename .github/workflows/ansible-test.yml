@@ -212,3 +212,16 @@ jobs:
       - uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: false
+          
+  deploy:
+    if: |
+      github.head_ref == "v*"
+    needs: integration
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Deploy the collection
+      uses: artis3n/ansible_galaxy_collection@v2
+      with:
+        api_key: ${{ secrets.GALAXY_API_KEY }}
