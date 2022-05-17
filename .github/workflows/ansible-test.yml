@@ -215,7 +215,7 @@ jobs:
           
   deploy:
     if: |
-      github.head_ref == "v*"
+      github.head_ref == 'v*'
     needs: integration
     runs-on: ubuntu-latest
     steps:
